@@ -18,19 +18,6 @@ provider "template" {
   version = "~> 2.1"
 }
 
-
-data "azurerm_client_config" "current" {}
-
-data "azurerm_subscription" "current" {}
-
-###########################################################
-# Resource Group
-###########################################################
-data "azurerm_resource_group" "rg" {
-  name = var.dslab_rg_name
-}
-
-
 ###########################################################
 # AKS Cluster
 ###########################################################
@@ -68,8 +55,8 @@ data "azurerm_key_vault_secret" "aks_ad_server_app_client_secret" {
 # Create AKS cluster
 resource "azurerm_kubernetes_cluster" "aks_dslab" {
   name                = var.aks_dslab_cluster_name
-  location            = data.azurerm_resource_group.rg.location
-  resource_group_name = data.azurerm_resource_group.rg.name
+  location            = var.dslab_rg_location
+  resource_group_name = var.dslab_rg_name
   dns_prefix          = var.aks_dslab_cluster_name
   kubernetes_version  = var.aks_dslab_version
 
@@ -94,7 +81,7 @@ resource "azurerm_kubernetes_cluster" "aks_dslab" {
     enabled = true
 
     azure_active_directory   {
-      tenant_id     =  data.azurerm_client_config.current.tenant_id
+      tenant_id     =  var.tenant_id
       server_app_id = data.azuread_application.aksADServerApp.application_id
       server_app_secret =data.azurerm_key_vault_secret.aks_ad_server_app_client_secret.value
       client_app_id = data.azuread_application.aksADClientApp.application_id

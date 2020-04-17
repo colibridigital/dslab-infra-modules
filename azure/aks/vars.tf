@@ -1,6 +1,11 @@
 ###########################################################
 # AD
 ###########################################################
+variable tenant_id {
+    description = "The Azure Tenant Id"
+    type        = string
+}
+
 variable aksClusterAppName {
     description = "The cluster application and service principal name"
     type        = string
@@ -36,6 +41,11 @@ variable subnet_id {
 ###########################################################
 variable dslab_rg_name {
     description = "The resource group name"
+    type        = string
+}
+
+variable dslab_rg_location {
+    description = "The resource group location"
     type        = string
 }
 

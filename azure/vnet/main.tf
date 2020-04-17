@@ -15,8 +15,8 @@ data "azurerm_resource_group" "rg" {
 resource "azurerm_virtual_network" "vnet" {
   name                = var.dslab_vnet_name
   address_space       = [var.dslab_vnet_address_space]
-  location            = data.azurerm_resource_group.rg.location
-  resource_group_name = data.azurerm_resource_group.rg.name
+  location            = var.dslab_rg_location
+  resource_group_name = var.dslab_rg_name
   tags = {
     Application = "DSLab"
     Environment = "poc"
@@ -26,7 +26,7 @@ resource "azurerm_virtual_network" "vnet" {
 
 resource "azurerm_subnet" "subnet" {
   name                 = var.dslab_subnet_name
-  resource_group_name  = data.azurerm_resource_group.rg.name
+  resource_group_name  = var.dslab_rg_name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefix       = var.dslab_subnet_address_prefix
   service_endpoints    = ["Microsoft.Sql", "Microsoft.Storage"]

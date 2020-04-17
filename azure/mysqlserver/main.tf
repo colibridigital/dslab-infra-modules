@@ -18,11 +18,6 @@ provider "template" {
   version = "~> 2.1"
 }
 
-
-data "azurerm_client_config" "current" {}
-
-data "azurerm_subscription" "current" {}
-
 ###########################################################
 # Resource Group
 ###########################################################
@@ -52,8 +47,8 @@ data "azurerm_key_vault_secret" "azure_mysql_admin_pass" {
 
 resource "azurerm_mysql_server" "dslab_mysql" {
   name                = var.dslab_mysql_name
-  location            = data.azurerm_resource_group.rg.location
-  resource_group_name = data.azurerm_resource_group.rg.name
+  location            = var.dslab_rg_location
+  resource_group_name = var.dslab_rg_name
 
   sku {
     name     = var.dslab_mysql_sku_name
@@ -85,7 +80,7 @@ resource "azurerm_mysql_server" "dslab_mysql" {
 ###########################################################
 resource "azurerm_mysql_virtual_network_rule" "dslab_mysql_vnetrule" {
   name                = var.dslab_mysql_vnet_rule_name
-  resource_group_name = data.azurerm_resource_group.rg.name
+  resource_group_name = var.dslab_rg_name
   server_name         = azurerm_mysql_server.dslab_mysql.name
   subnet_id           = var.subnet_id
 }
