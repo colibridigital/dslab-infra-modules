@@ -24,7 +24,7 @@ variable "aws_region" {
   type        = string
 }
 
-variable "efs-share-name" {
+variable "efs_share_name" {
   description = "EFS share name"
   type        = string
 }

@@ -9,7 +9,7 @@ variable "ecr_base_name" {
 }
 
 variable "ecr_jupyter_name" {
-  descriptoin = "Jupyter name"
+  description = "Jupyter name"
   type        = string
 }
 

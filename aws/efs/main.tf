@@ -10,7 +10,7 @@ module "efs" {
   subnets               = var.private_subnets
   vpc_id                = var.vpc_id
   encrypted             = true
-  name                  = var.efs-share-name
+  name                  = var.efs_share_name
   performance_mode      = "generalPurpose"
 
   tags = {
