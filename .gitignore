@@ -5,6 +5,9 @@
 *.tfstate
 *.tfstate.*
 
+.kube/
+
+
 # Crash log files
 crash.log
 

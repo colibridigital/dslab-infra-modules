@@ -15,14 +15,17 @@ provider "kubernetes" {
 }
 
 module "eks" {
-  source           = "terraform-aws-modules/eks/aws"
-  version          = "11.0.0"
-  cluster_name     = var.eks_cluster_name
-  cluster_version  = var.eks_cluster_version
-  subnets          = var.private_subnets
-  vpc_id           = var.vpc_id
-  manage_aws_auth  = true
-  write_kubeconfig = true
+  source                                    = "terraform-aws-modules/eks/aws"
+  version                                   = "11.0.0"
+  cluster_name                              = var.eks_cluster_name
+  cluster_version                           = var.eks_cluster_version
+  subnets                                   = var.private_subnets
+  vpc_id                                    = var.vpc_id
+  manage_aws_auth                           = true
+  write_kubeconfig                          = true
+  config_output_path                        = var.eks_cluster_config_path
+  kubeconfig_aws_authenticator_command      = "aws"
+  kubeconfig_aws_authenticator_command_args = ["eks", "get-token", "--cluster-name", var.eks_cluster_name]
 
   node_groups_defaults = {
     ami_type         = var.eks_cluster_ami_type
@@ -64,3 +67,10 @@ module "eks" {
 
   map_users = var.map_users
 }
+
+# provider "kubernetes" {
+#   alias = "init-k8s"
+#   load_config_file       = true
+#   config_path = var.eks_cluster_config_path
+#   version                = "~> 1.10"
+# }

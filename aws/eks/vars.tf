@@ -64,6 +64,12 @@ variable "eks_cluster_ami_type" {
 
 }
 
+variable "eks_cluster_config_path" {
+  description = "Path to write the config file to"
+  type        = string
+}
+
+
 variable "map_users" {
   description = "Additional IAM users to add to the aws-auth configmap."
   type = list(object({
