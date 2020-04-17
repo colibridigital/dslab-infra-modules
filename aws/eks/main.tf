@@ -2,29 +2,41 @@ data "aws_eks_cluster" "cluster" {
   name = module.eks.cluster_id
 }
 
+data "aws_eks_cluster_auth" "cluster" {
+  name = module.eks.cluster_id
+}
+
+provider "kubernetes" {
+  host                   = data.aws_eks_cluster.cluster.endpoint
+  cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
+  token                  = data.aws_eks_cluster_auth.cluster.token
+  load_config_file       = false
+  version                = "~> 1.10"
+}
+
 module "eks" {
-  source                        = "terraform-aws-modules/eks/aws"
-  version                       = "11.0.0"
-  cluster_name                  = var.eks_cluster_name
-  cluster_version               = var.eks_cluster_version
-  subnets                       = var.private_subnets
-  vpc_id                        = var.vpc_id
-  manage_aws_auth               = true
-  write_kubeconfig              = true
-  
+  source           = "terraform-aws-modules/eks/aws"
+  version          = "11.0.0"
+  cluster_name     = var.eks_cluster_name
+  cluster_version  = var.eks_cluster_version
+  subnets          = var.private_subnets
+  vpc_id           = var.vpc_id
+  manage_aws_auth  = true
+  write_kubeconfig = true
+
   node_groups_defaults = {
-    ami_type                          = var.eks_cluster_ami_type
-    disk_size                         = var.eks_cluster_node_group_defaults_disk_size
-    subnets                           = [var.private_subnets[0]]
-    desired_capacity                  = var.eks_cluster_node_group_defaults_asg_desired_size
-    max_capacity                      = var.eks_cluster_node_group_defaults_asg_max_size
-    min_capacity                      = var.eks_cluster_node_group_defaults_asg_min_size
+    ami_type         = var.eks_cluster_ami_type
+    disk_size        = var.eks_cluster_node_group_defaults_disk_size
+    subnets          = [var.private_subnets[0]]
+    desired_capacity = var.eks_cluster_node_group_defaults_asg_desired_size
+    max_capacity     = var.eks_cluster_node_group_defaults_asg_max_size
+    min_capacity     = var.eks_cluster_node_group_defaults_asg_min_size
 
     additional_tags = {
-      Environment                                               = var.eks_cluster_environment_tag_name
-      billing                                                   = var.billing_tag
-      "k8s.io/cluster-autoscaler/enabled"                       = true
-      "kubernetes.io/cluster-autoscaler/${var.eks_cluster_name}"  = "owned"
+      Environment                                                = var.eks_cluster_environment_tag_name
+      billing                                                    = var.billing_tag
+      "k8s.io/cluster-autoscaler/enabled"                        = true
+      "kubernetes.io/cluster-autoscaler/${var.eks_cluster_name}" = "owned"
     }
   }
 
@@ -42,7 +54,7 @@ module "eks" {
       k8s_labels = {
         Environment = var.eks_cluster_environment_tag_name
         podaffinity = "jupyter-medium"
-      }   
+      }
     }
   }
 
