@@ -8,6 +8,11 @@ variable "eks_cluster_name" {
   type        = string
 }
 
+variable "eks_cluster_version" {
+  description = "Kubernetes version to use"
+  type        = string
+}
+
 variable "private_subnets" {
   description = "The private subnets"
   type        = list

@@ -4,8 +4,9 @@ data "aws_eks_cluster" "cluster" {
 
 module "eks" {
   source                        = "terraform-aws-modules/eks/aws"
-  version                       = "8.0.0"
+  version                       = "11.0.0"
   cluster_name                  = var.eks_cluster_name
+  cluster_version               = var.eks_cluster_version
   subnets                       = var.private_subnets
   vpc_id                        = var.vpc_id
   manage_aws_auth               = true
