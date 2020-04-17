@@ -1,13 +1,3 @@
-variable "ecr_deployment_name" {
-  description = "Deployment name"
-  type        = string
-}
-
-variable "ecr_base_name" {
-  description = "Jupyter base name"
-  type        = string
-}
-
 variable "ecr_jupyter_name" {
   description = "Jupyter name"
   type        = string
