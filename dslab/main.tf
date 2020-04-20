@@ -42,7 +42,7 @@ resource "helm_release" "dslab_efs_provisioner" {
 
 resource "kubernetes_persistent_volume_claim" "dslab_pvc" {
   metadata {
-    name = "efs-pvc"
+    name = var.dslab_pvc_name
     annotations = {
       "volume.beta.kubernetes.io/storage-class" : "aws-efs"
     }
@@ -59,6 +59,43 @@ resource "kubernetes_persistent_volume_claim" "dslab_pvc" {
 
   depends_on = [kubernetes_namespace.dslab, helm_release.dslab_efs_provisioner]
 }
+
+
+resource "helm_release" "dslab_autoscaler" {
+  name       = "dslab-autoscaler"
+  repository = data.helm_repository.stable.metadata[0].name
+  chart      = "cluster-autoscaler"
+  #namespace  = var.dslab_namespace
+  #timeout = 300 # default
+  #wait = true '# default
+
+  set {
+    name  = "autoDiscovery.clusterName"
+    value = var.eks_cluster_id
+  }
+
+  set {
+    name  = "awsRegion"
+    value = var.aws_region
+  }
+
+  set {
+    name  = "autoDiscovery.enabled"
+    value = "true"
+  }
+
+  set {
+    name  = "cloudProvider"
+    value = "aws"
+  }
+
+  set {
+    name  = "rbac.create"
+    value = "true"
+  }
+}
+
+
 
 data "helm_repository" "jupyterhub" {
   name = "jupyterhub"

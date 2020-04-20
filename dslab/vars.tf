@@ -3,6 +3,11 @@ variable "eks_cluster_config_path" {
   type        = string
 }
 
+variable "eks_cluster_id" {
+  description = "Id of the EKS cluster"
+  type        = string
+}
+
 variable "dslab_namespace" {
   description = "The K8s namespace to use"
   type        = string
@@ -21,4 +26,10 @@ variable "aws_region" {
 variable "dslab_efs_mount_id" {
   description = "The efs mount point"
   type        = string
+}
+
+variable "dslab_pvc_name" {
+  description = "The name of the persistence volume claim"
+  type        = string
+
 }
