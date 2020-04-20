@@ -102,6 +102,52 @@ data "helm_repository" "jupyterhub" {
   url  = "https://jupyterhub.github.io/helm-chart/"
 }
 
+
+resource "helm_release" "dslab_jupyterhub" {
+  name          = "jupyterhub"
+  repository    = data.helm_repository.jupyterhub.metadata[0].name
+  chart         = "jupyterhub"
+  namespace     = var.dslab_namespace
+  timeout       = 36000
+  version       = "v0.8.2"
+  recreate_pods = "true"
+  #wait = true '# default
+
+  values = [
+    "${file(var.dslab_jupyter_config)}"
+  ]
+
+  set_sensitive {
+    name  = "hub.cookieSecret"
+    value = var.dslab_hub_cookie_secret
+  }
+
+  set {
+    name  = "hub.db.url"
+    value = var.dslab_hub_db_url
+  }
+
+  set_sensitive {
+    name  = "proxy.secretToken"
+    value = var.dslab_proxy_secret_token
+  }
+
+  set {
+    name  = "auth.custom.config.client_id"
+    value = var.dslab_azure_ad_application_client_id
+  }
+
+  set_sensitive {
+    name  = "auth.custom.config.client_secret"
+    value = var.dslab_azure_ad_application_client_secret
+  }
+
+  set {
+    name  = "auth.custom.config.tenant_id"
+    value = var.dslab_azure_tennant
+  }
+}
+
 # resource "helm_release" "my_cache" {
 #   name       = "my-cache"
 #   repository = data.helm_repository.incubator.metadata[0].name

@@ -31,5 +31,45 @@ variable "dslab_efs_mount_id" {
 variable "dslab_pvc_name" {
   description = "The name of the persistence volume claim"
   type        = string
-
 }
+
+variable "dslab_jupyter_config" {
+  description = "Path to the jupyter yaml file"
+  type        = string
+}
+
+variable "dslab_hub_cookie_secret" {
+  description = "The hub cookie secret"
+  type        = string
+}
+
+variable "dslab_hub_db_url" {
+  description = "The hub db url"
+  type        = string
+}
+
+variable "dslab_proxy_secret_token" {
+  description = "Proxy secret token"
+  type        = string
+}
+
+variable "dslab_azure_ad_application_client_id" {
+  description = "Azure application client id"
+  type        = string
+}
+
+
+variable "dslab_azure_ad_application_client_secret" {
+  description = "Azure application client secret"
+  type        = string
+}
+
+variable "dslab_azure_tennant" {
+  description = "Azure tennant id"
+  type        = string
+}
+
+
+
+
+
