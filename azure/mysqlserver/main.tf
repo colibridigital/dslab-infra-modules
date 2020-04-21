@@ -40,8 +40,8 @@ data "azurerm_key_vault_secret" "azure_mysql_admin_pass" {
 
 resource "azurerm_mysql_server" "dslab_mysql" {
   name                = var.dslab_mysql_name
-  location            = var.dslab_rg_location
-  resource_group_name = var.dslab_rg_name
+  location            = var.rg_location
+  resource_group_name = var.rg_name
 
   sku {
     name     = var.dslab_mysql_sku_name
