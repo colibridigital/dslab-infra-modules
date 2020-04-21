@@ -23,15 +23,15 @@ provider "template" {
 ###########################################################
 
 # Get Key Vault
-data "azurerm_key_vault" "dslab-keyvault" {
-  name                = var.dslabKeyvaultName 
-  resource_group_name = var.dslabKeyvaultRg 
+data "azurerm_key_vault" "keyvault" {
+  name                = var.keyvaultName 
+  resource_group_name = var.keyvaultRg 
 }
 
 # Get secret
 data "azurerm_key_vault_secret" "azure_mysql_admin_pass" {
   name         = var.dslab_mysql_name
-  key_vault_id = data.azurerm_key_vault.dslab-keyvault.id
+  key_vault_id = data.azurerm_key_vault.keyvault.id
 }
 
 ###########################################################
@@ -73,7 +73,7 @@ resource "azurerm_mysql_server" "dslab_mysql" {
 ###########################################################
 resource "azurerm_mysql_virtual_network_rule" "dslab_mysql_vnetrule" {
   name                = var.dslab_mysql_vnet_rule_name
-  resource_group_name = var.dslab_rg_name
+  resource_group_name = var.rg_name
   server_name         = azurerm_mysql_server.dslab_mysql.name
   subnet_id           = var.subnet_id
 }

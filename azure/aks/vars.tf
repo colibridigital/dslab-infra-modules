@@ -22,7 +22,7 @@ variable aksADClientAppName {
 ###########################################################
 # Log analytics
 ###########################################################
-variable logs_workspace_id {
+variable log_workspace_id {
     description = "The Logs Workspace ID"
     type        = string
 }
@@ -39,12 +39,12 @@ variable subnet_id {
 ###########################################################
 # RG
 ###########################################################
-variable dslab_rg_name {
+variable rg_name {
     description = "The resource group name"
     type        = string
 }
 
-variable dslab_rg_location {
+variable rg_location {
     description = "The resource group location"
     type        = string
 }
@@ -52,11 +52,11 @@ variable dslab_rg_location {
 ###########################################################
 # Key Vault
 ###########################################################
-variable dslabKeyvaultName {
+variable keyvaultName {
     description = "The Azure Key Vault Name"
     type        = string
 }
-variable dslabKeyvaultRg {
+variable keyvaultRg {
     description = "The Resource Group of the Azure Key Vault"
     type        = string
 }
@@ -64,11 +64,11 @@ variable dslabKeyvaultRg {
 ###########################################################
 # AKS
 ###########################################################
-variable aks_dslab_version {
+variable aks_version {
     description = "The version of the AKS"
     type        = string
 }
-variable aks_dslab_cluster_name {
+variable aks_cluster_name {
     description = "The name of the AKS cluster"
     type        = string
 }
@@ -111,31 +111,31 @@ variable aks_default_nodepool_max_count {
 #########################
 # AKS - Extra Large Node Pool
 #########################
-variable dslab_large_nodepool_vm_size {
+variable aks_large_nodepool_vm_size {
    description = "Large node pool vm size"
    type        = string
 }
-variable dslab_large_nodepool_name {
+variable aks_large_nodepool_name {
    description = "Large node pool name"
    type        = string
 }
-variable dslab_large_nodepool_os_disk_size_gb {
+variable aks_large_nodepool_os_disk_size_gb {
    description = "Large node pool os disk size in GB"
    type        = number
 }
-variable dslab_large_nodepool_node_count {
+variable aks_large_nodepool_node_count {
    description = "Large node pool node count"
    type        = number
 }
-variable dslab_large_nodepool_enable_autoscaling {
+variable aks_large_nodepool_enable_autoscaling {
    description = "Large node pool autoscaling"
    type        = bool
 }
-variable dslab_large_nodepool_min_count {
+variable aks_large_nodepool_min_count {
    description = "Large node pool min count"
    type        = number
 }
-variable dslab_large_nodepool_max_count {
+variable aks_large_nodepool_max_count {
    description = "Large node pool min count"
    type        = number
 }
