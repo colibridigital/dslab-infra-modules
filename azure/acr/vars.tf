@@ -23,3 +23,8 @@ variable rg_location {
     description = "The resource group location"
     type        = string
 }
+
+variable tags {
+  description = "The tags to be applied in each resource"  
+  type        =  map
+}

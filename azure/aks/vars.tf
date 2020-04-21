@@ -140,3 +140,8 @@ variable aks_large_nodepool_max_count {
    type        = number
 }
 
+variable tags {
+  description = "The tags to be applied in each resource"  
+  type        =  map
+}
+

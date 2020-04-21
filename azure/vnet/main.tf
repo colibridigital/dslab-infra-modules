@@ -10,16 +10,7 @@ resource "azurerm_virtual_network" "vnet" {
   address_space       = [var.vnet_address_space]
   location            = var.rg_location
   resource_group_name = var.rg_name
-  tags = {
-    Application = var.tag_application
-    Environment = var.tag_environment
-    Resource_Debtor = var.tag_resource_deptor
-    Resource_CostCenter = var.tag_resource_costcenter
-    Resource_Department = var.tag_resource_department
-    Resource_Expiration = var.tag_resource_expiration
-    Resource_Owner = var.tag_resource_owner
-    Resource_Type = var.tag_resource_type
-  }
+  tags                = var.tags
 }
 
 resource "azurerm_subnet" "subnet" {

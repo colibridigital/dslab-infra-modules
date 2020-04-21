@@ -93,3 +93,8 @@ variable dslab_mysql_sp_geo_redundant_backup {
     description = "The MySQL server backup status"
     type        = string
 }
+
+variable tags {
+    description = "The tags to be applied in each resource"  
+    type        =  map
+}
