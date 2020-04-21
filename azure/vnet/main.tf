@@ -10,11 +10,7 @@ resource "azurerm_virtual_network" "vnet" {
   address_space       = [var.vnet_address_space]
   location            = var.rg_location
   resource_group_name = var.rg_name
-  tags = {
-    Application = "DSLab"
-    Environment = "poc"
-    Resource_Debtor = "2132"
-  }
+  tags                = var.tags
 }
 
 resource "azurerm_subnet" "subnet" {

@@ -79,16 +79,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
         }
     }
 
-  tags = {
-      Application = "DSLab"
-      Environment = "poc"
-      Resource_Debtor = "2132"
-      Resource_CostCenter = "CC_2002552"
-      Resource_Department = "TCI-I"
-      Resource_Expiration = "2020.06.30"
-      Resource_Owner      = "Koeppel Gaudenz"
-      Resource_Type       = "ApplicationShared"
-  }
+  tags = var.tags
 }
 
 ###########################################################

@@ -11,9 +11,5 @@ resource "azurerm_container_registry" "acr" {
   location                 = var.rg_location
   sku                      = var.acr_sku
   admin_enabled            = true
-  tags = {
-    Application = "DSLab"
-    Environment = "poc"
-    Resource_Debtor = "2132"
-  }
+  tags                     = var.tags
 }

@@ -61,11 +61,7 @@ resource "azurerm_mysql_server" "dslab_mysql" {
   version                      = var.dslab_mysql_version
   ssl_enforcement              = var.dslab_mysql_ssl_enforcement
   
-  tags = {
-    Application = "DSLab"
-    Environment = "poc"
-    Resource_Debtor = "2132"
-  }
+  tags = var.tags
 }
 
 ###########################################################
