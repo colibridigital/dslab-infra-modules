@@ -11,13 +11,13 @@ resource "azurerm_log_analytics_workspace" "logs-workspace" {
     resource_group_name = var.rg_name
     sku                 = var.log_analytics_workspace_sku
     tags = {
-      Application = "DSLab"
-      Environment = "poc"
-      Resource_Debtor = "2132"
-      Resource_CostCenter = "CC_2002552"
-      Resource_Department = "TCI-I"
-      Resource_Expiration = "2020.06.30"
-      Resource_Owner      = "Koeppel Gaudenz"
-      Resource_Type       = "ApplicationShared"
+      Application = var.tag_application
+      Environment = var.tag_environment
+      Resource_Debtor = var.tag_resource_deptor
+      Resource_CostCenter = var.tag_resource_costcenter
+      Resource_Department = var.tag_resource_department
+      Resource_Expiration = var.tag_resource_expiration
+      Resource_Owner = var.tag_resource_owner
+      Resource_Type = var.tag_resource_type
     }
 }

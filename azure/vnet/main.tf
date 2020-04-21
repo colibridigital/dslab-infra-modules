@@ -11,9 +11,14 @@ resource "azurerm_virtual_network" "vnet" {
   location            = var.rg_location
   resource_group_name = var.rg_name
   tags = {
-    Application = "DSLab"
-    Environment = "poc"
-    Resource_Debtor = "2132"
+    Application = var.tag_application
+    Environment = var.tag_environment
+    Resource_Debtor = var.tag_resource_deptor
+    Resource_CostCenter = var.tag_resource_costcenter
+    Resource_Department = var.tag_resource_department
+    Resource_Expiration = var.tag_resource_expiration
+    Resource_Owner = var.tag_resource_owner
+    Resource_Type = var.tag_resource_type
   }
 }
 
