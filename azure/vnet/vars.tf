@@ -1,12 +1,12 @@
 ###########################################################
 # Subnet
 ###########################################################
-variable dslab_subnet_name {
+variable subnet_name {
     description = "Name of the Subnet"
     type        = string
 }
 
-variable dslab_subnet_address_prefix {
+variable subnet_address_prefix {
     description = "Subnet address prefix"
     type        = string
 }
@@ -14,12 +14,12 @@ variable dslab_subnet_address_prefix {
 ###########################################################
 # Vnet
 ###########################################################
-variable dslab_vnet_name {
+variable vnet_name {
     description = "Name of the VPC"
     type        = string
 }
 
-variable dslab_vnet_address_space {
+variable vnet_address_space {
     description = "VNet address space"
     type        = string
 }
@@ -27,12 +27,12 @@ variable dslab_vnet_address_space {
 ###########################################################
 # RG
 ###########################################################
-variable dslab_rg_name {
+variable rg_name {
     description = "The resource group name"
     type        = string
 }
 
-variable dslab_rg_location {
+variable rg_location {
     description = "The resource group location"
     type        = string
 }

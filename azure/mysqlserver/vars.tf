@@ -9,12 +9,12 @@ variable subnet_id {
 ###########################################################
 # RG
 ###########################################################
-variable dslab_rg_name {
+variable rg_name {
     description = "The resource group name"
     type        = string
 }
 
-variable dslab_rg_location {
+variable rg_location {
     description = "The resource group location"
     type        = string
 }
@@ -22,11 +22,11 @@ variable dslab_rg_location {
 ###########################################################
 # Key Vault
 ###########################################################
-variable dslabKeyvaultName {
+variable keyvaultName {
     description = "The Azure Key Vault Name"
     type        = string
 }
-variable dslabKeyvaultRg {
+variable keyvaultRg {
     description = "The Resource Group of the Azure Key Vault"
     type        = string
 }
