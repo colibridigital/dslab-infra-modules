@@ -8,7 +8,7 @@ provider "azurerm" {
 resource "azurerm_log_analytics_workspace" "logs-workspace" {
     name                = var.log_analytics_workspace_name
     location            = var.log_analytics_workspace_location
-    resource_group_name = var.dslab_rg_name
+    resource_group_name = var.rg_name
     sku                 = var.log_analytics_workspace_sku
     tags = {
       Application = "DSLab"
