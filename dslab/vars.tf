@@ -33,3 +33,9 @@ variable "dslab_pvc_name" {
   type        = string
 
 }
+
+variable "dslab_autoscaling_iam_policy_path" {
+  description = "IAM path for the autoscaling policy"
+  type = string
+  
+}

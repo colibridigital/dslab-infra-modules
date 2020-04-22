@@ -78,3 +78,13 @@ variable "map_users" {
     groups   = list(string)
   }))
 }
+
+variable "eks_iam_path" {
+  description = "IAM path for policy for autoscaler"
+  type        = string
+}
+
+variable "aws_region" {
+  description = "AWS region"
+  type        = string
+}
