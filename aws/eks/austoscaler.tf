@@ -54,7 +54,11 @@ data "aws_iam_policy_document" "worker_autoscaling" {
 
 provider helm {
   kubernetes {
-    config_path = var.eks_cluster_config_path
+    # config_path = var.eks_cluster_config_path
+    host                   = data.aws_eks_cluster.cluster.endpoint
+    cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
+    token                  = data.aws_eks_cluster_auth.cluster.token
+    load_config_file       = false
   }
 }
 
