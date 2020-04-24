@@ -69,7 +69,6 @@ variable "eks_cluster_config_path" {
   type        = string
 }
 
-
 variable "map_users" {
   description = "Additional IAM users to add to the aws-auth configmap."
   type = list(object({
@@ -86,5 +85,10 @@ variable "eks_iam_path" {
 
 variable "aws_region" {
   description = "AWS region"
+  type        = string
+}
+
+variable "ingress_deployment_namespace" {
+  description = "Namespace to deploy Nginx to"
   type        = string
 }
