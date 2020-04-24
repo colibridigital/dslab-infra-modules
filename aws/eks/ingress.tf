@@ -2,7 +2,7 @@ resource "helm_release" "nginx-ingress" {
   name       = "nginx-ingress"
   repository = data.helm_repository.stable.metadata[0].name
   chart      = "nginx-ingress"
-  namespace  = var.dslab_namespace
+  namespace  = var.ingress_deployment_namespace
 
   set {
     name  = "controller.name"
@@ -11,7 +11,7 @@ resource "helm_release" "nginx-ingress" {
 
   set {
     name  = "controller.scope.namespace"
-    value = var.dslab_namespace
+    value = var.ingress_deployment_namespace
   }
 
   set {
