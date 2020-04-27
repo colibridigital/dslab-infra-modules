@@ -1,8 +1,3 @@
-variable "eks_cluster_config_path" {
-  description = "Path to the k8s config file"
-  type        = string
-}
-
 variable "eks_cluster_id" {
   description = "Id of the EKS cluster"
   type        = string

@@ -1,15 +1,3 @@
-provider "kubernetes" {
-  load_config_file = true
-  config_path      = var.eks_cluster_config_path
-  version          = "~> 1.10"
-}
-
-provider "helm" {
-  kubernetes {
-    config_path = var.eks_cluster_config_path
-  }
-}
-
 resource "kubernetes_namespace" "dslab" {
   metadata {
     name = var.dslab_namespace
@@ -61,9 +49,6 @@ resource "kubernetes_persistent_volume_claim" "dslab_pvc" {
 }
 ########################################################
 
-data "aws_eks_cluster" "cluster" {
-  name = var.eks_cluster_id
-}
 
 ########################################################
 
