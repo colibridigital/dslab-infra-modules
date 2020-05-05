@@ -145,3 +145,11 @@ variable tags {
   type        =  map
 }
 
+#########################
+# AKS - Ingress Controller
+#########################
+variable "ingress_deployment_namespace" {
+  description = "Namespace to deploy Nginx to"
+  type        = string
+}
+
