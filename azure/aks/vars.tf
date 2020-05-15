@@ -153,3 +153,22 @@ variable "ingress_deployment_namespace" {
   type        = string
 }
 
+#########################
+# AKS - Cert Manager
+#########################
+variable "cm_deployment_namespace" {
+  description = "Namespace to deploy Cert Manager to"
+  type        = string
+}
+
+variable "cm_deployment_version" {
+  description = "Cert Manager helm release version"
+  type        = string
+}
+
+variable "cm_deployment_install_crds" {
+  description = "Boolean if to install cert manager custom CRDs"
+  type        = bool
+}
+
+
